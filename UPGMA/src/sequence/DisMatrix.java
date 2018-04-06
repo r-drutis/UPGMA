@@ -6,6 +6,7 @@ public class DisMatrix {
 	ArrayList<DNASequence> sequences = new ArrayList<DNASequence>();
 	float[][] dis_score;
 	
+	
 	public DisMatrix(ArrayList<DNASequence> seqEntries){
 		this.sequences = seqEntries;
 		
@@ -34,7 +35,7 @@ public class DisMatrix {
 	}
 	
 	
-	public void calcScores() {
+	public float[][] calcScores() {
 		String seq1_data;
 		String seq2_data;
 		for (int i = 0; i < sequences.size(); i++) {
@@ -45,7 +46,7 @@ public class DisMatrix {
 				System.out.println(i +"," + j +": " + dis_score[i][j]);
 			}		
 		}
-		
+		return dis_score;
 	}
 	
 	
