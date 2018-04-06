@@ -14,6 +14,7 @@ public class ClusterMatrix {
 		double minDistance = Double.POSITIVE_INFINITY;	// Minimum non-zero distance in dissimilarity matrix
 		int mSize = this.clusterMatrix.length;
 		
+		// Array is symmetrical, so you can iterate through half
 		for (int i=0; i<mSize; i++) {
 			for (int j=i+1; j<mSize; j++) {
 				// Initialize the minimum distance with a non-zero value
@@ -43,6 +44,7 @@ public class ClusterMatrix {
 		ArrayList<Integer> pair;		
 		int iskew = 0; // skew position when inserting into new matrix
 		int jskew = 0;
+		boolean clustered = false;
 
 		pair = findMin();
 		System.out.println("Point 1: " + pair.get(0));
@@ -50,20 +52,20 @@ public class ClusterMatrix {
 		
 		for (int i=0; i<cSize; i++) {
 
-			if (pair.contains(i)){
-				iskew++;
+			if(pair.contains(i)){
+				for (int j=i+1; j<cSize; j++) {					
+					if (pair.contains(j)){
+						joinedMatrix[i][i] = 111;
+					}
+				System.out.println(i + ", " + j + " " + this.clusterMatrix[i][j]);
 			}
-			for (int j=0; j<cSize; j++) {
-				if(pair.contains(j)){
-					jskew++;
-				}
-				if (pair.contains(i) || pair.contains(j)){
-					joinedMatrix[i-iskew][j-jskew] = this.clusterMatrix[i][j];
-				}
-			System.out.println((i-iskew) + " , " + (j-jskew) + " " + this.clusterMatrix[i][j]);
-				
+			
+
+
+
 			}
 		}
+
 		
 	}							
 }
