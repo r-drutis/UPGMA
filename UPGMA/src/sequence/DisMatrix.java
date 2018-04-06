@@ -34,7 +34,7 @@ public class DisMatrix {
 		return distance;
 	}
 	
-	
+	// Calculate dissimilarity scores (hamming distance)
 	public double[][] calcScores() {
 		String seq1_data;
 		String seq2_data;

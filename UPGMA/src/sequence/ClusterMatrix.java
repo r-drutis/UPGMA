@@ -35,13 +35,13 @@ public class ClusterMatrix {
 	}
 	
 	
-	
+	// Join nearest neighbours and generate new matrix with cluser
 	public void joinNearest() {
 		int cSize = this.clusterMatrix.length;
 		double[][] joinedMatrix = new double[cSize-1][cSize-1];
 
 		ArrayList<Integer> pair;		
-		int iskew = 0;
+		int iskew = 0; // skew position when inserting into new matrix
 		int jskew = 0;
 
 		pair = findMin();

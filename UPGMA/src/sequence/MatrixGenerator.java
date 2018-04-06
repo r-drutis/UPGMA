@@ -20,7 +20,7 @@ public class MatrixGenerator {
 		dmatrix.debug();
 		double[][] scores = dmatrix.calcScores();
 		
-		ClusterMatrix cluster = new ClusterMatrix(scores);
+		ClusterMatrix cluster = new ClusterMatrix(scores); // Cluster nearest neighbors in matrix
 		cluster.joinNearest();
 		
 	}
