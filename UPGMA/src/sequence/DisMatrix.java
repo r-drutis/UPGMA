@@ -4,13 +4,13 @@ import java.util.ArrayList;
 
 public class DisMatrix {
 	ArrayList<DNASequence> sequences = new ArrayList<DNASequence>();
-	float[][] dis_score;
+	double[][] dis_score;
 	
 	
 	public DisMatrix(ArrayList<DNASequence> seqEntries){
 		this.sequences = seqEntries;
 		
-		this.dis_score = new float[sequences.size()][sequences.size()];
+		this.dis_score = new double[sequences.size()][sequences.size()];
 		
 	}
 	public void debug(){
@@ -19,8 +19,8 @@ public class DisMatrix {
 		}	
 	}
 	//compare strings of equal length
-	public float calcDistance(String seq1, String seq2){
-		float distance = 0;
+	public double calcDistance(String seq1, String seq2){
+		double distance = 0;
 		char baseA;
 		char baseB;
 		for(int i =0; i < seq1.length(); i++){
@@ -35,7 +35,7 @@ public class DisMatrix {
 	}
 	
 	
-	public float[][] calcScores() {
+	public double[][] calcScores() {
 		String seq1_data;
 		String seq2_data;
 		for (int i = 0; i < sequences.size(); i++) {

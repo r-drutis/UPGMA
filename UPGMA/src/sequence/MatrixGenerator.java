@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class MatrixGenerator {
 
 	public static void main(String[] args) {
-		String fasta = "C:\\Users\\Rob\\Desktop\\test.fasta";	// Get fasta file to read
+		String fasta = "C:\\Users\\rdrutis\\Desktop\\test.fasta";	// Get fasta file to read
 		FastaReader reader = new FastaReader();
 		ArrayList<DNASequence> fastaSequences = new ArrayList<DNASequence>();	// Generate list of DNA sequences and their labels
 		
@@ -18,7 +18,7 @@ public class MatrixGenerator {
 		
 		DisMatrix dmatrix = new DisMatrix(fastaSequences);	// Generate a dissimilarity Matrix
 		dmatrix.debug();
-		float[][] scores = dmatrix.calcScores();
+		double[][] scores = dmatrix.calcScores();
 		
 		ClusterMatrix cluster = new ClusterMatrix(scores);
 		cluster.joinNearest();

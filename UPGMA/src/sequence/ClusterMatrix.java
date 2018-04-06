@@ -1,52 +1,69 @@
 package sequence;
 
+import java.util.ArrayList;
+
 public class ClusterMatrix {
-	float[][] clusterMatrix;
+	double[][] clusterMatrix;
 		
-	public ClusterMatrix(float[][] distMatrix) {
+	public ClusterMatrix(double[][] distMatrix) {
 		this.clusterMatrix = distMatrix;				
 	}
 	
-	
-	
-	
-	
-	public void joinNearest() {
-		float minDistance = 0;	// Minimum non-zero distance in dissimilarity matrix
-		int neighbor1 = 0;			// First sequence in neighbor pair
-		int neighbor2 = 0;			// Second sequence in neighbor pair
-		int mSize = clusterMatrix.length;
-		float[][] joinedMatrix = new float[mSize-1][mSize-1];
+	private ArrayList<Integer> findMin(){
+		ArrayList<Integer> closePair = new ArrayList<Integer>(2);
+		double minDistance = Double.POSITIVE_INFINITY;	// Minimum non-zero distance in dissimilarity matrix
+		int mSize = this.clusterMatrix.length;
 		
 		for (int i=0; i<mSize; i++) {
 			for (int j=i+1; j<mSize; j++) {
 				// Initialize the minimum distance with a non-zero value
 				if (minDistance == 0) {	
-					minDistance = clusterMatrix[i][j];
+					minDistance = this.clusterMatrix[i][j];
 				}
 				// Find the minimum non-zero value in the array
-				else if (clusterMatrix[i][j] != 0) {	
-					if (clusterMatrix[i][j] < minDistance) {
-						minDistance = clusterMatrix[i][j];
-						neighbor1 = i;
-						neighbor2 = j;
-					}
-				}								
-			}			
-		}
-		for (int i=0; i<mSize-1; i++) {
-			if (i != neighbor1 && i != neighbor2) {
-				for (int j=0; j<mSize-1; j++) {
-					if (j != neighbor1 && j != neighbor2) {
-						
-						
+				else if (this.clusterMatrix[i][j] != 0) {	
+					if (this.clusterMatrix[i][j] < minDistance) {
+						minDistance = this.clusterMatrix[i][j];
+						closePair.add(0, i);
+						closePair.add(1, j);
 					}
 				}
 			}
 		}
-		
-	
-	
+
+		return closePair;
 	}
 	
+	
+	
+	public void joinNearest() {
+		int cSize = this.clusterMatrix.length;
+		double[][] joinedMatrix = new double[cSize-1][cSize-1];
+
+		ArrayList<Integer> pair;		
+		int iskew = 0;
+		int jskew = 0;
+
+		pair = findMin();
+		System.out.println("Point 1: " + pair.get(0));
+		System.out.println("Point 2: " + pair.get(1));
+		
+		for (int i=0; i<cSize; i++) {
+
+			if (pair.contains(i)){
+				iskew++;
+			}
+			for (int j=0; j<cSize; j++) {
+				if(pair.contains(j)){
+					jskew++;
+				}
+				if (pair.contains(i) || pair.contains(j)){
+					joinedMatrix[i-iskew][j-jskew] = this.clusterMatrix[i][j];
+				}
+			System.out.println((i-iskew) + " , " + (j-jskew) + " " + this.clusterMatrix[i][j]);
+				
+			}
+		}
+		
+	}							
 }
