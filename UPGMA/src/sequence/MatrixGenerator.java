@@ -18,9 +18,9 @@ public class MatrixGenerator {
 		
 		DisMatrix dmatrix = new DisMatrix(fastaSequences);	// Generate a dissimilarity Matrix
 		dmatrix.debug();
-		float[][] scores = dmatrix.calcScores();
+		double[][] scores = dmatrix.calcScores();
 		
-		ClusterMatrix cluster = new ClusterMatrix(scores);
+		Cluster cluster = new Cluster(scores); // Cluster nearest neighbors in matrix
 		cluster.joinNearest();
 		
 	}
